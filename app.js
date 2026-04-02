@@ -1,19 +1,40 @@
-const API_KEY = "YOUR_TMDB_API_KEY";
+const movies = [
+  {
+    title: "Inception",
+    poster: "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
+  },
+  {
+    title: "Interstellar",
+    poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+  },
+  {
+    title: "Joker",
+    poster: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"
+  },
+  {
+    title: "The Dark Knight",
+    poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+  },
+  {
+    title: "Fight Club",
+    poster: "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg"
+  }
+];
 
-async function getTrending() {
-  const res = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
-  const data = await res.json();
-  displayMovies(data.results);
+// Load movies
+function loadMovies() {
+  displayMovies(movies);
 }
 
-function displayMovies(movies) {
+// Display
+function displayMovies(list) {
   const container = document.getElementById("movies");
   container.innerHTML = "";
 
-  movies.forEach(movie => {
+  list.forEach(movie => {
     container.innerHTML += `
       <div class="movie-card">
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" />
+        <img src="${movie.poster}" />
         <h4>${movie.title}</h4>
         <button onclick="addToWatchlist('${movie.title}')">❤️</button>
       </div>
@@ -21,31 +42,37 @@ function displayMovies(movies) {
   });
 }
 
-async function searchMovie() {
-  const query = document.getElementById("search").value;
-  const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
-  const data = await res.json();
-  displayMovies(data.results);
+// Search
+function searchMovie() {
+  const query = document.getElementById("search").value.toLowerCase();
+
+  const filtered = movies.filter(m =>
+    m.title.toLowerCase().includes(query)
+  );
+
+  displayMovies(filtered);
 }
 
+// Fake AI
 function fakeAI() {
   const input = document.getElementById("ai-input").value.toLowerCase();
 
   let result = "Try: ";
 
   if (input.includes("sad")) {
-    result += "Joker, Her, Manchester by the Sea";
+    result += "Joker, Fight Club";
+  } else if (input.includes("space")) {
+    result += "Interstellar";
   } else if (input.includes("action")) {
-    result += "John Wick, Mad Max, Extraction";
-  } else if (input.includes("romantic")) {
-    result += "Titanic, La La Land, Before Sunrise";
+    result += "The Dark Knight";
   } else {
-    result += "Inception, Interstellar, The Dark Knight";
+    result += "Inception";
   }
 
   document.getElementById("ai-result").innerText = result;
 }
 
+// Watchlist
 function addToWatchlist(movie) {
   let list = JSON.parse(localStorage.getItem("watchlist")) || [];
   list.push(movie);
@@ -53,4 +80,5 @@ function addToWatchlist(movie) {
   alert("Added to watchlist");
 }
 
-getTrending();
+// Start
+loadMovies();
