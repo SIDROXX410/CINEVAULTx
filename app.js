@@ -21,12 +21,12 @@ const movies = [
   { title: "Deadpool", genre: "action", poster: "https://image.tmdb.org/t/p/w500/3E53WEZJqP6aM84D8CckXx4pIHw.jpg" }
 ];
 
-// LOAD
+// LOAD MOVIES
 function loadMovies() {
   displayMovies(movies);
 }
 
-// DISPLAY
+// DISPLAY MOVIES
 function displayMovies(list) {
   const container = document.getElementById("movies");
   container.innerHTML = "";
@@ -42,7 +42,7 @@ function displayMovies(list) {
   });
 }
 
-// SEARCH
+// SEARCH FUNCTION
 function searchMovie() {
   const query = document.getElementById("search").value.toLowerCase();
 
@@ -53,20 +53,41 @@ function searchMovie() {
   displayMovies(filtered);
 }
 
-// AI
+// SMART AI FUNCTION
 function fakeAI() {
   const input = document.getElementById("ai-input").value.toLowerCase();
 
-  const filtered = movies.filter(m =>
-    input.includes(m.genre)
+  let moodMap = {
+    "happy": ["romantic", "motivating"],
+    "sad": ["sad", "dark"],
+    "action": ["action"],
+    "romantic": ["romantic"],
+    "motivating": ["motivating"],
+    "dark": ["dark"],
+    "fun": ["romantic", "action"],
+    "exciting": ["action"]
+  };
+
+  let matchedGenres = [];
+
+  for (let mood in moodMap) {
+    if (input.includes(mood)) {
+      matchedGenres = moodMap[mood];
+      break;
+    }
+  }
+
+  let filtered = movies.filter(m =>
+    matchedGenres.includes(m.genre)
   );
 
   if (filtered.length === 0) {
     document.getElementById("ai-result").innerText =
-      "Try: Inception, Interstellar, Joker";
+      "Try: happy, sad, action, motivating";
   } else {
     document.getElementById("ai-result").innerText =
-      "Recommended: " + filtered.map(m => m.title).join(", ");
+      "Based on your mood, you might like: " +
+      filtered.map(m => m.title).join(", ");
   }
 }
 
