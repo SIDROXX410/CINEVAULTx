@@ -1,23 +1,30 @@
 body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
   background: #0b0b0f;
   color: white;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
 }
 
-/* Top section */
-.top-section {
+/* HERO */
+.hero {
+  height: 60vh;
+  background: url('https://images.unsplash.com/photo-1608889175123-8ee362201f81') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.7);
+  padding: 40px;
   text-align: center;
-  margin-top: 30px;
+  border-radius: 15px;
 }
 
-/* Title */
 h1 {
-  font-size: 40px;
-  letter-spacing: 1px;
+  font-size: 45px;
 }
 
-/* Controls */
 .controls {
   margin-top: 20px;
 }
@@ -26,7 +33,6 @@ input {
   padding: 12px;
   border-radius: 8px;
   border: none;
-  outline: none;
   margin: 10px;
   width: 220px;
   background: #1a1a24;
@@ -47,7 +53,7 @@ button:hover {
   background: #ff1e2d;
 }
 
-/* Movies grid */
+/* MOVIES */
 #movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -55,13 +61,12 @@ button:hover {
   padding: 40px;
 }
 
-/* Cards */
+/* CARDS */
 .movie-card {
   background: #141414;
   border-radius: 15px;
   overflow: hidden;
   transition: 0.4s;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .movie-card img {
@@ -74,21 +79,17 @@ button:hover {
   padding: 10px;
 }
 
-/* Hover effect */
+/* HOVER */
 .movie-card:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px rgba(229, 9, 20, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
 }
 
-/* Heart button */
+/* HEART */
 .movie-card button {
   margin: 10px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background: #222;
-}
-
-.movie-card button:hover {
-  background: #e50914;
 }
