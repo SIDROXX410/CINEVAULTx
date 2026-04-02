@@ -2,22 +2,33 @@
 <html>
 <head>
   <title>CineVault</title>
+  
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- FONT (IMPORTANT) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<h1>CineVault 🎬</h1>
+<div class="top-section">
+  <h1>CineVault 🎬</h1>
 
-<input id="search" placeholder="Search movies...">
-<button onclick="searchMovie()">Search</button>
+  <div class="controls">
+    <input id="search" placeholder="Search movies...">
+    <button onclick="searchMovie()">Search</button>
 
-<input id="ai-input" placeholder="Mood (e.g. sad rainy night)">
-<button onclick="fakeAI()">Ask AI</button>
+    <input id="ai-input" placeholder="Mood (e.g. sad rainy night)">
+    <button onclick="fakeAI()">Ask AI</button>
+  </div>
 
-<h3 id="ai-result"></h3>
+  <h3 id="ai-result"></h3>
+</div>
 
 <div id="movies"></div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
