@@ -5,15 +5,23 @@ body {
   margin: 0;
 }
 
-/* Header */
-h1 {
+/* Top section */
+.top-section {
   text-align: center;
-  font-size: 40px;
   margin-top: 30px;
+}
+
+/* Title */
+h1 {
+  font-size: 40px;
   letter-spacing: 1px;
 }
 
-/* Search + AI */
+/* Controls */
+.controls {
+  margin-top: 20px;
+}
+
 input {
   padding: 12px;
   border-radius: 8px;
@@ -39,7 +47,7 @@ button:hover {
   background: #ff1e2d;
 }
 
-/* Grid */
+/* Movies grid */
 #movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
